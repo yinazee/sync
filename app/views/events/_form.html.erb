@@ -1,0 +1,33 @@
+<%= form_for @event do |f| %>
+
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :location, "Location" %><br>
+    <%= f.text_field :location, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :date, "From:" %><br>
+    <%= f.date_field :date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :date, "To:" %><br>
+    <%= f.date_field :date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, "Please enter a description of your event. *Optional*" %><br>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+
+<% end %>

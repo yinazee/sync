@@ -6,7 +6,9 @@ git_source(:github) do |repo_name|
 end
 
 # gem 'bootstrap-sass', '~> 3.2.0'
-gem 'bootstrap'
+# gem 'bootstrap'
+# bootstrap
+gem 'bootstrap-sass', '3.3.7'
 gem 'autoprefixer-rails'
 
 # social media login
@@ -32,9 +34,6 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 
 
-# bootstrap
-
-gem 'bootstrap-sass', '3.3.7'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

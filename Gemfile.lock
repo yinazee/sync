@@ -49,10 +49,6 @@ GEM
       execjs
     bcrypt (3.1.12)
     bindex (0.5.0)
-    bootstrap (4.1.1)
-      autoprefixer-rails (>= 6.0.3)
-      popper_js (>= 1.12.9, < 2)
-      sass (>= 3.5.2)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -133,7 +129,6 @@ GEM
     omniauth-oauth2 (1.5.0)
       oauth2 (~> 1.1)
       omniauth (~> 1.2)
-    popper_js (1.12.9)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -248,7 +243,6 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bcrypt (~> 3.1.7)
-  bootstrap
   bootstrap-sass (= 3.3.7)
   byebug
   capybara (~> 2.13)
