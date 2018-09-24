@@ -5,6 +5,17 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap'
+gem 'autoprefixer-rails'
+
+# social media login
+gem 'omniauth'
+gem 'omniauth-facebook'
+
+# hides api keys/secrets
+gem 'dotenv-rails'
+
 #Simple Calendar gem
 gem "simple_calendar", "~> 2.0"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
