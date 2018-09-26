@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   post 'logout' => 'sessions#destroy'
 
   resources :users
-  resources :events
+    resources :events
+  
 
 
 end

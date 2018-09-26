@@ -1,4 +1,37 @@
-<% binding.pry %>
-<% @events.each do |event| %>
-<%= event.name %>
+<p>Here are all your events</p>
+
+<% @events.each_with_index do |event, index| %>
+<p><%= "#{index+1}. #{event.name}.upcase - #{event.location}"%></p>
+
 <% end %>
+
+<table class="table">
+
+  <thread><!--this will set 3 columns-->
+    <tr>
+      <th colspan="4"></th>
+    </tr>
+  </thread>
+
+  <tbody>
+
+    <tr><!--this will name the columns-->
+      <td><strong>Name</strong></td>
+      <td><strong>Location</strong></td>
+      <td><strong>Description</strong></td>
+      <td><strong>Date</strong></td>
+    </tr>
+
+  <% @events.each do |event| %>
+    <tr><!--this will list the details of the column name-->
+      <td><%= link_to event.name, edit_user_event_path(@user, event) %></td>
+      <td><%= event.location %></td>
+      <td><%= event.description %></td>
+      <td><%= event.date %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<p><%= link_to "Create New Event", new_user_event_path %></p>

@@ -1,3 +1,4 @@
+<div class="form">
 <%= form_for @event do |f| %>
 
   <div class="form-group">
@@ -16,14 +17,16 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :description, "Please enter a description of your event. *Optional*" %><br>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :date, "To:" %><br>
     <%= f.date_field :date, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :description, "Please enter a description of your event. *Optional*" %><br>
-    <%= f.text_field :description, class: "form-control" %>
-  </div>
+
 
 
   <div class="actions">
@@ -31,3 +34,5 @@
   </div>
 
 <% end %>
+
+</div>

@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
- 
+
 /* *= require simple_calendar */
 
 
@@ -52,4 +52,8 @@ body {
 .info {
   height: 290px;
   text-align: left;
+}
+
+.form {
+  align: left;
 }
