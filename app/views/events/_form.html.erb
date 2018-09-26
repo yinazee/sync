@@ -26,7 +26,10 @@
     <%= f.text_field :description, class: "form-control" %>
   </div>
 
-
+  <div class="form-group">
+    <%= f.label :guest, "Select your guests" %><br>
+    <%= f.collection_select(:id, @users, :id, :name) %>
+  </div>
 
   <div class="actions">
     <%= f.submit class: "btn btn-primary" %>
