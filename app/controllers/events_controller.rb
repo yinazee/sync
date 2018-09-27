@@ -30,6 +30,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    @event.delete
+    redirect_to event_path(@event), flash: {success: "'#{@event.title}' was deleted!"}
+  end
+
   private
   def event_params
     params.require(:event).permit(
