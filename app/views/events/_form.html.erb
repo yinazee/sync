@@ -28,7 +28,8 @@
 
   <div class="form-group">
     <%= f.label :guest, "Select your guests" %><br>
-    <%= f.collection_select(:id, @users, :id, :name) %>
+
+    <%= f.collection_select :name, User.all.sort{|a,b| a.name<=>b.name}, :id, :name, include_blank: 'Please select your guests' %>
   </div>
 
   <div class="actions">

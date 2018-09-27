@@ -21,12 +21,11 @@ ActiveRecord::Schema.define(version: 2018_09_26_051946) do
     t.string "name"
     t.string "location"
     t.date "date_from"
-    t.date "date_to"
     t.string "description"
     t.integer "host_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
+    t.date "date_to"
   end
 
   create_table "hosts", force: :cascade do |t|
