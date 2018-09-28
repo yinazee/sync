@@ -6,6 +6,9 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @host = Host.new(id: current_user.id)
+    binding.pry
+    @guest = Guest.new
   end
 
   def create
@@ -14,7 +17,6 @@ class EventsController < ApplicationController
   end
 
   def edit
-    binding.pry
     @user = Event.find_by(id: params[:host_id])
     @event = @user.events.build(user_id: current_user.id)
 

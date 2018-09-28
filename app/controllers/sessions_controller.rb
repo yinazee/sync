@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
   def new
     @user = User.new
+    @user.host_id = Host .new
+    @user.guest_id = Guest.new
   end
 
   def create

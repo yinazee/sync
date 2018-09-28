@@ -27,9 +27,9 @@
   </div>
 
   <div class="form-group">
+    <%
     <%= f.label :guest, "Select your guests" %><br>
-
-    <%= f.collection_select :name, User.all.sort{|a,b| a.name<=>b.name}, :id, :name, include_blank: 'Please select your guests' %>
+    <%= f.check_box_tag :guests, Guests.all.sort{|a,b| a.name<=>b.name}, :id, :name, include_blank: 'Please select your guests' %>
   </div>
 
   <div class="actions">
