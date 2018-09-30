@@ -6,14 +6,15 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @host = Host.new(id: current_user.id)
-    binding.pry
-    @guest = Guest.new
+    @users = User.all
   end
 
   def create
     @event = Event.create(event_params)
+    @event.host = current_user.host
+    @users = User.all
     redirect_to events_path
+
   end
 
   def edit
