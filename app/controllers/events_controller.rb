@@ -18,9 +18,15 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @user = Event.find_by(id: params[:host_id])
-    @event = @user.events.build(user_id: current_user.id)
+    @user = current_user
+    @users = User.all
+    @event = Event.find_by(id: params[:id])
+    # @events = @user.host.events
 
+    # @user = Event.find_by(id: params[:host_id])
+    # @event = @user.events.build(user_id: current_user.id)
+    # show if checkboxes are checked
+    # if params[:check].eql?('1')
   end
 
   def update
@@ -43,7 +49,7 @@ class EventsController < ApplicationController
     params.require(:event).permit(
         :name,
         :location,
-        :date
+        :date_from
       )
 end
 

@@ -7,8 +7,12 @@ Rails.application.routes.draw do
   post 'signin' => 'sessions#create'
   post 'logout' => 'sessions#destroy'
 
-  resources :users
-  resources :events
+  resources :users do
+    resources :events
+  end
+
+resources :events
+
 
 
 

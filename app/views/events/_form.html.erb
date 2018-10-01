@@ -4,41 +4,35 @@
   <div class="form-group">
     <%= f.label :name %><br>
     <%= f.text_field :name, class: "form-control" %>
-  </div>
+  </div><br>
 
   <div class="form-group">
     <%= f.label :location, "Location" %><br>
     <%= f.text_field :location, class: "form-control" %>
-  </div>
+  </div><br>
 
   <div class="form-group">
     <%= f.label :date_from, "From:" %><br>
     <%= f.date_field :date_from, class: "form-control" %>
-  </div>
+  </div><br>
 
   <div class="form-group">
-    <%= f.label :date_to, "From:" %><br>
+    <%= f.label :date_to, "To: *Optional" %><br>
     <%= f.date_field :date_to, class: "form-control" %>
-  </div>
+  </div><br>
 
   <div class="form-group">
     <%= f.label :description, "Please enter a description of your event. *Optional*" %><br>
     <%= f.text_field :description, class: "form-control" %>
-  </div>
+  </div><br>
 
 
-  <div class="form-group">
-    <%= f.label :guest, "Select your guests" %><br>
-    <%= f.collection_select :guests, User.all.sort{|a,b| a.name<=>b.name}, :id, :name, include_blank: 'Please select your guests' %>
-  </div>
-
-  <span>Invite Your Guests:</span>
+  <span>Invite Your Guests:</span><br>
         <%@users.each do |user|%>
-        <ol>
-          <input type="checkbox" id="<%=user.id%>" name="event[guest][]" value="<%=user.id%>"><%=user.name%></input>
+          <input type="checkbox" id="<%=user.id%>" name="event[guest][]" value="<%=user.id%>"><%=user.name%></input><br>
           <% end %>
           <br>
-        </ol>
+
 
 
 

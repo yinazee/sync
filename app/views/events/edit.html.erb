@@ -1,2 +1,4 @@
-<p>Edit <%= event.name %></p>
+
+<p>Edit <%= @event.name %></p>
 <%= render 'form' %>
+<%= link_to 'Cancel', user_path(@user) %>

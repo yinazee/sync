@@ -57,3 +57,7 @@ body {
 .form {
   align: left;
 }
+
+.text_field {
+    height: 40px;
+}
