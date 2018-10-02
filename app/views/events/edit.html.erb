@@ -1,4 +1,13 @@
 
 <p>Edit <%= @event.name %></p>
 <%= render 'form' %>
+
+
+<span>Invite Your Guests:</span><br>
+<%@event.guests.each do |guest|%>
+  <input type="checkbox" id="<%=user.id%>" name="event[guest][]" value="<%=guest.user.id%>" <%= 'checked' if @event.guests.include?(guest.user.id) %>><%=guest.user.name%></input><br>
+  <% end %>
+  <br>
+
+<%= 'checked' if @movie.genre_ids.include?(genre.id) %>
 <%= link_to 'Cancel', user_path(@user) %>

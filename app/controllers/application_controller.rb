@@ -12,8 +12,8 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-  def current_user
-    User.find_by(id:session[:user_id])
+  def current_user #should return previous user or look for current user
+    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
 

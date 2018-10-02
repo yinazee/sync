@@ -1,2 +1,8 @@
 <p>Create a new event!</p>
 <%= render 'form' %>
+
+<span>Invite Your Guests:</span><br>
+<%@users.each do |user|%>
+  <input type="checkbox" id="<%=user.id%>" name="event[guest][]" value="<%=user.id%>"><%=user.name%></input><br>
+  <% end %>
+  <br>

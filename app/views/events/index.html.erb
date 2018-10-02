@@ -1,5 +1,4 @@
-<p>Here are all your events</p>
-
+<p>Events You Created:</p>
 
 <table class="table">
 
@@ -25,7 +24,8 @@
       <td><%= event.location %></td>
       <td><%= event.date_from %></td>
       <td><%= event.date_to %></td>
-      <td><%= link_to "Edit", edit_event_path(event) %></td>
+      <td><%= link_to "Delete", event_path(event), method: :delete %></td>
+
 
     </tr>
     <% end %>
@@ -34,3 +34,9 @@
 
 
 <p><%= link_to "Create New Event", new_event_path %></p>
+
+<p>Events You've Been Invited to:</p>
+
+<% @invites.each do |invite| %>
+<%= link_to "#{invite.name}", event_path(invite) %><br>
+<% end %>
