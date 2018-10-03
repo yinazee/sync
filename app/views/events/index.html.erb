@@ -20,11 +20,11 @@
   <% @events.each do |event| %>
 
     <tr><!--this will list the details of the column name-->
-      <td><%= link_to "#{event.name}", event_path(event) %></td>
+      <td><%= link_to "#{event.name}", user_event_path(@user, event) %></td>
       <td><%= event.location %></td>
       <td><%= event.date_from %></td>
       <td><%= event.date_to %></td>
-      <td><%= link_to "Delete", event_path(event), method: :delete %></td>
+      <td><%= link_to "Delete", user_event_path(@user, event), method: :delete %></td>
 
 
     </tr>
@@ -33,10 +33,10 @@
 </table>
 
 
-<p><%= link_to "Create New Event", new_event_path %></p>
+<p><%= link_to "Create New Event", new_user_event_path(@user) %></p>
 
 <p>Events You've Been Invited to:</p>
 
 <% @invites.each do |invite| %>
-<%= link_to "#{invite.name}", event_path(invite) %><br>
+<%= link_to "#{invite.name}", user_event_path(@user, invite) %><br>
 <% end %>

@@ -8,6 +8,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @user = current_user
     @users = User.all
   end
 
@@ -21,14 +22,14 @@ class EventsController < ApplicationController
         params[:event][:guest].each do |id|
           #finds guests and adds them to event's guest list
           @event.guests << Guest.find_or_create_by(user_id: id)
+          @event.save
         end
     end
-    @event.save
     redirect_to events_path
     end
-  end
 
   def show
+    @user = current_user
     @event = Event.find(params[:id])
   end
 
@@ -36,12 +37,13 @@ class EventsController < ApplicationController
     @user = current_user
     @users = User.all
     @event = Event.find_by(id: params[:id])
-    if !params[:event][:guest].blank?
-        params[:event][:guest].each do |id|
-        @event.guests << Guest.find_or_create_by(user_id: id)
-    end
+    # binding.pry
+    # if !params[:event][:guest].blank?
+    #     params[:event][:guest].each do |id|
+    #     @event.guests << Guest.find_or_create_by(user_id: id)
+    # end
 
-    @event.save
+    # @event.save
     # @events = @user.host.events
 
     # @user = Event.find_by(id: params[:host_id])
@@ -76,6 +78,5 @@ class EventsController < ApplicationController
         :date_from
       )
   end
-
 
 end

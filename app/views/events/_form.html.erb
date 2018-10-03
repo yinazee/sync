@@ -1,5 +1,6 @@
 <div class="form">
-<%= form_for @event do |f| %>
+
+<%=form_for(@event, url: new_user_event_path(@user), html: {method: "patch"}) do |f|%>
 
   <div class="form-group">
     <%= f.label :name, "Event Name" %><br>
@@ -25,10 +26,6 @@
     <%= f.label :description, "Please enter a description of your event. *Optional*" %><br>
     <%= f.text_field :description, class: "form-control" %>
   </div><br>
-
-
-
-
 
 
 
