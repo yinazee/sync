@@ -1,13 +1,56 @@
 
-<p>Edit <%= @event.name %></p>
-<%= render 'form' %>
+<h1>Edit <%= @event.name %></h1>
 
+<div class="form">
 
-<span>Invite Your Guests:</span><br>
-<%@event.guests.each do |guest|%>
-  <input type="checkbox" id="<%=user.id%>" name="event[guest][]" value="<%=guest.user.id%>" <%= 'checked' if @event.guests.include?(guest.user.id) %>><%=guest.user.name%></input><br>
+<%=form_for(@event, url: new_user_event_path(@user), html: {method: "patch"}) do |f|%>
+
+  <div class="form-group">
+    <%= f.label :name, "Event Name" %><br>
+    <%= f.text_field :name, class: "form-control" %>
+  </div><br>
+
+  <div class="form-group">
+    <%= f.label :location, "Location" %><br>
+    <%= f.text_field :location, class: "form-control" %>
+  </div><br>
+
+  <div class="form-group">
+    <%= f.label :date_from, "From:" %><br>
+    <%= f.date_field :date_from, class: "form-control" %>
+  </div><br>
+
+  <div class="form-group">
+    <%= f.label :date_to, "To: *Optional" %><br>
+    <%= f.date_field :date_to, class: "form-control" %>
+  </div><br>
+
+  <div class="form-group">
+    <%= f.label :description, "Please enter a description of your event. *Optional*" %><br>
+    <%= f.text_field :description, class: "form-control" %>
+  </div><br>
+
+    <div class="actions">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+
+</div>
+  <span>Invite Your Guests:</span><br>
+    <%@event.guests.each do |guest|%>
+    <% check_box_tag 'invited', 'yes', true %>
+
+  <input checked="checked" type="checkbox" id="<%=guest.id%>" name="event[guest][]" value="<%=guest.id%>"> <%=guest.user.name%></input><br>
+
+    <% end %><br>
+
+  <div class="actions">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+
   <% end %>
-  <br>
 
-<%= 'checked' if @movie.genre_ids.include?(genre.id) %>
+
 <%= link_to 'Cancel', user_path(@user) %>
+
+
+</div>

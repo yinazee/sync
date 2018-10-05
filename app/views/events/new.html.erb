@@ -1,8 +1,45 @@
 <p>Create a new event!</p>
-<%= render 'form' %>
+<div class="form">
 
-<span>Invite Your Guests:</span><br>
-<%@users.each do |user|%>
-  <input type="checkbox" id="<%=user.id%>" name="event[guest][]" value="<%=user.id%>"><%=user.name%></input><br>
-  <% end %>
-  <br>
+<%=form_for(@event, url: new_user_event_path(@user), html: {method: "patch"}) do |f|%>
+
+  <div class="form-group">
+    <%= f.label :name, "Event Name" %><br>
+    <%= f.text_field :name, class: "form-control" %>
+  </div><br>
+
+  <div class="form-group">
+    <%= f.label :location, "Location" %><br>
+    <%= f.text_field :location, class: "form-control" %>
+  </div><br>
+
+  <div class="form-group">
+    <%= f.label :date_from, "From:" %><br>
+    <%= f.date_field :date_from, class: "form-control" %>
+  </div><br>
+
+  <div class="form-group">
+    <%= f.label :date_to, "To: *Optional" %><br>
+    <%= f.date_field :date_to, class: "form-control" %>
+  </div><br>
+
+  <div class="form-group">
+    <%= f.label :description, "Please enter a description of your event. *Optional*" %><br>
+    <%= f.text_field :description, class: "form-control" %>
+  </div><br>
+
+  <span>Invite Your Guests:</span><br>
+  <%@users.each do |user|%>
+    <input type="checkbox" id="<%=user.id%>" name="event[guest][]" value="<%=user.id%>"><%=user.name%></input><br>
+    <% end %>
+    <br>
+
+
+    <div class="actions">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+
+
+<% end %>
+
+</div>
