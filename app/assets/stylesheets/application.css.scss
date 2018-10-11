@@ -27,12 +27,12 @@ nav li a {
   align: left;
 }
 
-.icon {
-  width:10px;
-  height:10px;
-  border:0;
-  margin-bottom: 20px;
-}
+// .icon {
+//   width:10px;
+//   height:10px;
+//   border:0;
+//   margin-bottom: 20px;
+// }
 
 .theme-dropdown .dropdown-menu {
   position: static;
@@ -59,16 +59,15 @@ nav li a {
 
 .container {
   width: 450px;
-  margin: 150px auto;
-  text-align: center;
+  margin: auto;
+  text-align: left;
 }
-
-
-.icon {
-  width:10px;
-  height:10px;
-  border:0;
-}
+//
+// .icon {
+//   width:10px;
+//   height:10px;
+//   border:0;
+// }
 
 
 ///////////////// Welcome, Sign Up, Log in /////////////////
@@ -88,9 +87,9 @@ nav li a {
 
 .container {
   width: 450px;
-  margin: 40px auto;
+  margin: 50px;
   margin-bottom: 40px;
-  text-align: center;
+  text-align: left;
 }
 
 .container p {
