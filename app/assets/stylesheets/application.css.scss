@@ -1,0 +1,199 @@
+
+/* *= require simple_calendar */
+
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+// FONTS
+@import url('https://fonts.googleapis.com/css?family=Karla');
+
+body {
+  padding-top: 1px;
+  padding-bottom: 30px;
+  font-family: 'Karla', sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Karla', serif;
+}
+
+///////////////// Nav bar /////////////////
+nav li a {
+  margin: 10px;
+  display: block;
+  vertical-align: baseline;
+  align: left;
+}
+
+.icon {
+  width:10px;
+  height:10px;
+  border:0;
+  margin-bottom: 20px;
+}
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.info {
+  height: 290px;
+  text-align: left;
+}
+
+.form {
+  align: left;
+}
+
+.container {
+  width: 450px;
+  margin: 150px auto;
+  text-align: center;
+}
+
+
+.icon {
+  width:10px;
+  height:10px;
+  border:0;
+}
+
+
+///////////////// Welcome, Sign Up, Log in /////////////////
+#welcome {
+  // background-color: rgba(255,255,255, 0.5);
+  // border-radius: 40px;
+  // border: 2px solid #73AD21;
+}
+
+#welcome h1 {
+  font-size: 50px;
+}
+
+#welcome .obj-links {
+  margin-bottom: 20px;
+}
+
+.container {
+  width: 450px;
+  margin: 40px auto;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.container p {
+  margin: 20px 0;
+}
+
+///////////////// User's HomePage /////////////////
+#homepage {
+  width: 450px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+/// NEW DOM HEADER ///
+#header {
+  text-align: center;
+  margin: 35px 0;
+}
+
+///////////////// Body Header /////////////////
+.header {
+  text-align: center;
+  margin: 35px 0;
+}
+
+.heading {
+  margin-bottom: 20px;
+}
+
+
+.content {
+  // width: 150px;
+  margin: 35px auto;
+}
+
+///////////////// User's Profile /////////////////
+#the_user.obj-attr {
+  margin: 25px 0;
+  padding: 20px;
+}
+
+///////////////// Errors /////////////////
+.error_explanation {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: rgba(255,0,0, 0.5);
+  border: 1px solid red;
+}
+
+.field_with_errors input{
+  border: 1px solid red !important;
+}
+
+.alert {
+  background-color: rgba(230,245,226, 0.4);
+  text-align: center;
+}
+
+///////////////// Forms /////////////////
+form {
+  margin: 32px 16px;
+}
+
+input {
+  margin-left: 16px;
+}
+
+input::placeholder {
+  font-size: 12px;
+  font-style: italic;
+  padding: 0 6px;
+}
+
+.field {
+  margin-bottom: 24px;
+}
+
+/////////// Tables ///////////
+.pagination {
+  float: right;
+  clear: both;
+}
+
+.pagination span {
+  margin-right: 10px;
+}
+
+.pagination a {
+  //no formatting needed?
+}
+
+///////////////// Artwork form for Medium/Media /////////////////
+.collection-check-box {
+  margin: 0 5px auto;
+  display: inline-block;
+}
+
+.add_medium {
+  margin: 15px auto;
+}
+
+///////////////// Footer /////////////////
+.footer {
+  margin: 150px auto;
+  text-align: center;
+}

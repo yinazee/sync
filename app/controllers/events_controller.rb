@@ -13,8 +13,9 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.create(event_params)
+    @event = Event.create(params[:event])
     @event.host = current_user.host
+    @user = current_user
     @users = User.all
 
     # @event.guest_ids = params[:event][:guest]
@@ -23,46 +24,39 @@ class EventsController < ApplicationController
           #finds guests and adds them to event's guest list
           @event.guests << Guest.find_or_create_by(user_id: id)
           @event.save
+          @user.host.events << @event
         end
     end
-    redirect_to events_path
+    redirect_to user_events_path
     end
 
   def show
     @user = current_user
     @event = Event.find(params[:id])
+    @host = Host.find(@event.host_id)
   end
 
   def edit
     @user = current_user
-    @users = User.all
     @event = Event.find_by(id: params[:id])
-    # binding.pry
-    # if !params[:event][:guest].blank?
-    #     params[:event][:guest].each do |id|
-    #     @event.guests << Guest.find_or_create_by(user_id: id)
-    # end
-
-    # @event.save
-    # @events = @user.host.events
-
-    # @user = Event.find_by(id: params[:host_id])
-    # @event = @user.events.build(user_id: current_user.id)
-    # show if checkboxes are checked
-    # if params[:check].eql?('1')
   end
-
-
 
   def update
+    @user = current_user
     @event = Event.find_by(id: params[:id])
-    @event.update(event_params)
-    if current_user.id == @event.host.user.id
-      redirect_to event_path(@event)
-    else
-      redirect_to root_path, flash: {danger: "Please login to edit your event."}
+    if current_user.host.id == @event.host_id
+      binding.pry
+      @guests = params[:event][:guest]
+      # @event.guests = @guests.each do |guest|
+
+      @event.update(event_params)
+      respond_to do |f|
+      f.html {redirect_to user_event_path(@user, @event), flash: {success: "#{@event.name} was updated!"}}
     end
+  else
+    render :edit
   end
+end
 
   def destroy
     @event = Event.find_by(id: params[:id])
