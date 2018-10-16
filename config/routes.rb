@@ -3,9 +3,12 @@ Rails.application.routes.draw do
 
   root "welcome#home"
 
-  get 'signin' => 'sessions#new'
-  post 'signin' => 'sessions#create'
-  post 'logout' => 'sessions#destroy'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  post '/logout' => 'sessions#destroy'
+
+  get '/auth/facebook/callback' => 'sessions#create'
+
 
   resources :users do
     resources :events

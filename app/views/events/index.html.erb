@@ -1,14 +1,9 @@
-<p>Events You Created:</p>
+<h1>Events You Created:</h1>
 
 <table class="table">
 
-  <thread><!--this will set 4 columns-->
-    <tr>
-      <th colspan="4"></th>
-    </tr>
-  </thread>
-
   <tbody>
+
     <tr><!--this will name the columns-->
       <td><strong>Name</strong></td>
       <td><strong>Location</strong></td>
@@ -17,13 +12,13 @@
       <td><strong>Delete</strong></td>
     </tr>
 
-  <% @events.each do |event| %>
 
     <tr><!--this will list the details of the column name-->
+        <% @events.each do |event| %>
       <td><%= link_to "#{event.name}", user_event_path(@user, event) %></td>
       <td><%= event.location %></td>
-      <td><%= event.date_from %></td>
-      <td><%= event.date_to %></td>
+      <td><%= event.date.strftime("%b %d, %Y") %></td>
+      <td><%= link_to "Edit", edit_user_event_path(@user, event) %></td>
       <td><%= link_to "Delete", user_event_path(@user, event), method: :delete %></td>
 
 

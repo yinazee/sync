@@ -15,8 +15,19 @@ body {
   font-family: 'Karla', sans-serif;
 }
 
+
+
 h1, h2, h3, h4 {
   font-family: 'Karla', serif;
+}
+
+
+ .col-span-4 {
+   padding-top: 175px;
+}
+
+.strong{
+ font-weight:bold;
 }
 
 ///////////////// Nav bar /////////////////
@@ -26,13 +37,6 @@ nav li a {
   vertical-align: baseline;
   align: left;
 }
-
-// .icon {
-//   width:10px;
-//   height:10px;
-//   border:0;
-//   margin-bottom: 20px;
-// }
 
 .theme-dropdown .dropdown-menu {
   position: static;
@@ -47,27 +51,22 @@ nav li a {
 .center {
   text-align: center;
 }
-
 .info {
   height: 290px;
   text-align: left;
 }
+
 
 .form {
   align: left;
 }
 
 .container {
-  width: 450px;
+  // width: 450px;
   margin: auto;
   text-align: left;
 }
-//
-// .icon {
-//   width:10px;
-//   height:10px;
-//   border:0;
-// }
+
 
 
 ///////////////// Welcome, Sign Up, Log in /////////////////
@@ -83,6 +82,14 @@ nav li a {
 
 #welcome .obj-links {
   margin-bottom: 20px;
+}
+
+#welcome .home {
+  width: auto;
+  margin: 80px auto;
+  margin-bottom: 40px;
+  padding: auto;
+  text-align: center;
 }
 
 .container {
@@ -193,6 +200,6 @@ input::placeholder {
 
 ///////////////// Footer /////////////////
 .footer {
-  margin: 150px auto;
+  margin: 70px auto;
   text-align: center;
 }

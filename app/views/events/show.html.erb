@@ -1,17 +1,14 @@
 
-<h1><%= @event.name %><br></h1>
+<h1><%= @event.name %></h1>
 
 <p><strong>Host:</strong> <%if @host.id == current_user.id %> You <%else%> <%=@event.host.user.name%><%end%></p>
 <p><strong>Location:</strong> <%= @event.location %><br></p>
-<p><strong>Date:</strong> <%= @event.date_from %><br></p>
-<% if !@event.date_to.nil? %>
-<p><strong>Date To:</strong> <%= @event.date_to%><br></p>
-<% end %>
+<p><strong>Date:</strong> <%= @event.date %><br></p>
 <p><strong>Description:</strong> <%= @event.description %><br></p>
 
 
 <% @event.guests.collect do |guest| %>
-<%= guest.user.name %><br>
+<%= guest.user.name.capitalize %><br>
 <% end %>
 
 <%= link_to "Edit", edit_user_event_path(@user, @event) %><br>

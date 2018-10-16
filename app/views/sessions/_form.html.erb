@@ -1,5 +1,5 @@
 <%= form_for @user, :url => url_for(controller: "sessions", action: "create") do |f| %>
-
+   <%= render :partial => 'shared/flash_messages' %>
 <div class="form-group">
   <%= f.label :name, 'Your name:' %><br>
   <%= f.text_field :name, class: "form-control"%>

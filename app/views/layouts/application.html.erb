@@ -4,12 +4,14 @@
   <head>
     <title>SYNC</title>
     <%= csrf_meta_tags %>
+    <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC+ehL/vnoS/756Ev++ehL/vnoS/756Ev++ehL/vnoS/756Ev++ehL/vnoS/756Ev8AAAAAAAAAAAAAAAAAAAAAvnoS/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC+ehL/AAAAAAAAAAAAAAAAAAAAAL56Ev8AAAAAAAAAADAfBUAAAAAAMB8FQDAfBUAAAAAAMB8FQAAAAAAAAAAAvnoS/wAAAAAAAAAAAAAAAAAAAAC+ehL/AAAAAL56Ev++ehL/AAAAAL56Ev++ehL/AAAAAL56Ev++ehLfAAAAAL56Ev8AAAAAAAAAAAAAAAAAAAAAvnoS/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC+ehL/AAAAAAAAAAAAAAAAAAAAAL56Ev8AAAAAvnoS/756Ev8AAAAAvnoS/756Ev8AAAAAvnoS/756Et8AAAAAvnoS/wAAAAAAAAAAAAAAAAAAAAC+ehL/AAAAAL56Ev++ehL/AAAAAL56Ev++ehL/AAAAAL56Ev++ehLfAAAAAL56Ev8AAAAAAAAAAAAAAAAAAAAAvnoS/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC+ehL/AAAAAAAAAAAAAAAAAAAAAL56Ev8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvnoS/wAAAAAAAAAAAAAAAAAAAAC+ehL/vnoS/756Ev++ehL/vnoS/756Ev++ehL/vnoS/756Ev++ehL/vnoS/756Ev8AAAAAAAAAAAAAAAAAAAAAvnoS/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC+ehL/AAAAAAAAAAAAAAAAAAAAAL56Ev++ehLPvnoSz756Es++ehLPvnoSz756Es++ehLPvnoSz756Es++ehLPvnoS/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL56Ev8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC+ehLfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC+ehL/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvnoS3wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAMADAADf+wAA3/sAANJLAADf+wAA0ksAANJLAADf+wAA3/sAAMADAADf+wAAwAMAAPfvAAD37wAA//8AAA==" rel="icon" type="image/x-icon" />
     <link rel="icon" type="image/png" href="/assets/images/blue_calendar_tab.ico" />
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
         <div class="navbar-header">
@@ -23,10 +25,10 @@
           <a class="navbar-header" href="<%= root_url %>"><img src="https://i.imgur.com/OTFXGpq.png" alt="SYNC Home" style="width:42px;height:42px;border:0"; align="left";></a>
           <% if !current_user %>
             <%= link_to 'Create Account', new_user_path, class: "navbar-brand" %>
-            <%= link_to 'Log In', signin_path, class: "navbar-brand" %>
+            <%= link_to 'Log In', login_path, class: "navbar-brand" %>
             <%= link_to 'Log in with Facebook!', '/auth/facebook', class: "navbar-brand"%>
           <% else %>
-            <%= link_to "Hello, #{current_user.name}", user_path(current_user), class: "navbar-brand" %>
+            <%= link_to "Hello, #{current_user.name.capitalize}", user_path(current_user), class: "navbar-brand" %>
             <%= link_to "My Events", user_events_path(current_user), class: "navbar-brand" %>
             <%= link_to "Log Out", logout_path, method: :post, class: "navbar-brand" %>
             <% end %>
@@ -41,7 +43,8 @@
     </div>
 
     <!-- content -->
-    <div class="container"  role="main">
+    <div class="container" role="main">
+      <%= yield :form_errors %>
       <%= yield %>
     </div>
   </body>

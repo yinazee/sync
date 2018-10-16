@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?, :log_user_in #let these methods be used in views
 
   private
-  def verify_user_is_authenticated
-    redirect_to '/' unless user_is_authenticated
+  def log_user_in
+    session[:user_id] = @user.id
   end
 
   #check if user logged in

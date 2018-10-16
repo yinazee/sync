@@ -6,15 +6,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    @user = User.new(user_params)
+    @user.name.downcase
+    @user.save
     @user.host = Host.create
     @user.guest = Guest.create
 
     if @user && @user.save
-       @user.id = session[:user_id]
+      session[:user_id] = @user.id
       flash[:success] = "You've successfully created an account!"
-      edirect_to user_path(@user)
-      # redirect_to @user #/users/#{@user.id} same as user_path(@user)
+      redirect_to user_path(@user)
     else
       flash.now[:danger] = "Please enter a valid email & valid password"
       render :new #error; show user the form again
@@ -27,12 +28,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    current_user ? (render :show) : (redirect_to root_path)
+    redirect_to root_path unless session[:user_id] #redirect to artists pat
   end
 
-  def delete
+  def destroy
     @user.destroy
-  redirect_to root_path, flash: {success: "Your account has been deleted!"}
+    redirect_to root_path, flash: {success: "Your account has been deleted!"}
   end
 
 

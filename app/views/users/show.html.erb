@@ -1,13 +1,12 @@
 
 <div class="center-alert">
-  <p>  <%= render :partial => 'shared/flash_messages' %></p>
+   <%= render :partial => 'shared/flash_messages' %>
 </div>
 
   <div class="info">
+    <p><h1><%= @user.name.capitalize %>'s Profile Page</h1></p>
 
-    <h1><%= @user.name %>'s Profile Page</h1>
-
-  <p><%= link_to "Create Your First Event!", new_user_event_path(@user) %></p>
-  <p><%= link_to "Delete Account", @user, method: :delete, data: {confirm: "Are you sure you want to delete your Account?"}, class: "btn btn-primary" %></p>
+    <p><%= link_to "Create Your First Event!", new_user_event_path(@user) %></p>
+    <p><%= link_to "Delete Account", @user, method: :delete, data: {confirm: "Are you sure you want to delete your Account?"}, class: "btn btn-primary" %></p>
 
   </div>

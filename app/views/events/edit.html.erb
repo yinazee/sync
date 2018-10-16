@@ -15,38 +15,30 @@
   </div><br>
 
   <div class="form-group">
-    <%= f.label :date_from, "From:" %><br>
-    <%= f.date_field :date_from, class: "form-control" %>
+    <%= f.label :date, "From:" %><br>
+    <%= f.date_field :date, class: "form-control" %>
   </div><br>
 
   <div class="form-group">
-    <%= f.label :date_to, "To: *Optional" %><br>
-    <%= f.date_field :date_to, class: "form-control" %>
-  </div><br>
-
-  <div class="form-group">
-    <%= f.label :description, "Please enter a description of your event. *Optional*" %><br>
+    <%= f.label :description, "Description: *Optional*" %><br>
     <%= f.text_field :description, class: "form-control" %>
   </div><br>
 
-
-</div>
-  <span>Invite Your Guests:</span><br>
-    <%@event.guests.each do |guest|%>
-    <% check_box_tag 'invited', 'yes', true %>
-
-  <input checked="checked" type="checkbox" id="<%=guest.id%>" name="event[guest][]" value="<%=guest.id%>"> <%=guest.user.name%></input><br>
-
-    <% end %><br>
+  <div class="form-group">
+    <%= f.label :guests, "Guests:" %><br>
+    (Sorry, you may not uninvite guests once they are invited.)<br><br>
+    <% @event.guests.collect do |guest| %>
+    <%= guest.user.name.capitalize %><br>
+    <% end %>
+  </div><br>
 
   <div class="actions">
     <%= f.submit class: "btn btn-primary" %>
   </div>
-
   <% end %>
 
+  <p><%= link_to 'Cancel', user_path(@user) %></p>
 
-<%= link_to 'Cancel', user_path(@user) %>
 
 
 </div>

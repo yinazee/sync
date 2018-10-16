@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_one :host
   has_one :guest
   has_secure_password
+  before_save :downcase_fields
   validates_confirmation_of :password
 
   validates :name, presence: true, length: { maximum: 50 }
@@ -9,7 +10,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 5 }
+  validates :password, presence: true, length: { minimum: 6 }
 
   #find or create by oauth user_id
   def self.set_user_from_omniauth(uid)
@@ -22,4 +23,7 @@ class User < ApplicationRecord
     end
   end
 
+  def downcase_fields
+    self.name = name.downcase
+  end
 end

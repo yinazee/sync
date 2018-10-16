@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
 
   def index
-    @events = Event.all
     @user = current_user
+    @events = @user.host.events
     @invites = @user.guest.events
   end
 
@@ -13,7 +13,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.create(params[:event])
+    @event = Event.create(event_params)
     @event.host = current_user.host
     @user = current_user
     @users = User.all
@@ -26,8 +26,8 @@ class EventsController < ApplicationController
           @event.save
           @user.host.events << @event
         end
-    end
-    redirect_to user_events_path
+      end
+      redirect_to user_events_path
     end
 
   def show
@@ -44,19 +44,15 @@ class EventsController < ApplicationController
   def update
     @user = current_user
     @event = Event.find_by(id: params[:id])
-    if current_user.host.id == @event.host_id
-      binding.pry
-      @guests = params[:event][:guest]
-      # @event.guests = @guests.each do |guest|
-
-      @event.update(event_params)
-      respond_to do |f|
-      f.html {redirect_to user_event_path(@user, @event), flash: {success: "#{@event.name} was updated!"}}
-    end
-  else
-    render :edit
+# @user.host.id == @event.host.id
+      if @event.update(event_params)
+        respond_to do |f|
+          f.html {redirect_to user_event_path(@user, @event), flash: {success: "#{@event.name} was updated!"}}
+        end
+      else
+        render :edit, flash: {danger: "Please login first!"}
+      end
   end
-end
 
   def destroy
     @event = Event.find_by(id: params[:id])
@@ -65,11 +61,14 @@ end
   end
 
   private
+
   def event_params
     params.require(:event).permit(
         :name,
         :location,
-        :date_from
+        :date,
+        :description,
+        :guests
       )
   end
 
