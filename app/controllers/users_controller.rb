@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :destroy]
 
   def new
     @user = User.new
@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.name.downcase
     @user.save
+    # every user created also gets a host id and guest id
     @user.host = Host.create
     @user.guest = Guest.create
 
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(current_user.id)
+    # @user = User.find(current_user.id)
     redirect_to root_path unless session[:user_id] #redirect to artists pat
   end
 
