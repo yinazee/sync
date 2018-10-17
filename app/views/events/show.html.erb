@@ -1,13 +1,19 @@
 
 <h1><%= @event.name %></h1>
 
-<p><strong>Host:</strong> <%if @host.id == current_user.id %> You <%else%> <%=@event.host.user.name%><%end%></p>
+<p><strong>Host:</strong> <%if @host.user.id == current_user.id %> You <%else%> <%=@event.host.user.name.capitalize%><%end%></p>
 <p><strong>Location:</strong> <%= @event.location %><br></p>
 <p><strong>Date:</strong> <%= @event.date %><br></p>
 <p><strong>Description:</strong> <%= @event.description %><br></p>
+
 <strong>Guests:</strong><br>
 <% @event.guests.collect do |guest| %>
-<%= guest.user.name.capitalize %><br>
+  <!--the host name will not appear as a suggestion in the guest list -->
+  <% if guest.id == @host.user.id %>
+    <% nil %>
+  <% else %>
+    <%= guest.user.name.capitalize %><br>
+  <% end %>
 <% end %>
 
 <%= link_to "Edit", edit_user_event_path(@user, @event) %><br>

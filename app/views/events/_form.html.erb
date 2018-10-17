@@ -1,6 +1,6 @@
 <div class="form">
 
-<%=form_for(@event, url: new_user_event_path(@user), html: {method: "patch"}) do |f|%>
+<%=form_for @event, url: {action: "create"} do |f|%>
 
   <div class="form-group">
     <%= f.label :name, "Event Name" %><br>
@@ -13,19 +13,22 @@
   </div><br>
 
   <div class="form-group">
-    <%= f.label :date_from, "From:" %><br>
-    <%= f.date_field :date_from, class: "form-control" %>
+    <%= f.label :date, "From:" %><br>
+    <%= f.date_field :date, class: "form-control" %>
   </div><br>
 
-  <div class="form-group">
-    <%= f.label :date_to, "To: *Optional" %><br>
-    <%= f.date_field :date_to, class: "form-control" %>
-  </div><br>
-
-  <div class="form-group">
+  <div class="field">
     <%= f.label :description, "Please enter a description of your event. *Optional*" %><br>
     <%= f.text_field :description, class: "form-control" %>
   </div><br>
+
+  <span><strong>Invite Your Guests:</strong></span><br>
+  *You may not uninvite guests once they are invited <br>
+  <%@users.each do |user|%>
+    <input type="checkbox" id="<%=user.id%>" name="event[guest][]" value="<%=user.id%>"><%=user.name.capitalize%></input><br>
+    <% end %>
+    <br>
+
 
     <div class="actions">
       <%= f.submit class: "btn btn-primary" %>

@@ -21,10 +21,9 @@ class SessionsController < ApplicationController
     end
   end
 
-
   def destroy
     session.delete :user_id
-    redirect_to root_path, flash: {success: "You're logged out!"}
+    redirect_to '/login', flash: {success: "You've been logged out!"}
   end
 
   private
