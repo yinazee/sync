@@ -39,6 +39,13 @@ class EventsController < ApplicationController
   def edit
     @user = current_user
     @event = Event.find_by(id: params[:id])
+    @host = Host.find(@event.host_id)
+    if @host.user.id != @user.id
+      redirect_to user_event_path
+    else
+      redirect_to edit_user_event_path(@user, @event)
+    end
+
   end
 
   def update
