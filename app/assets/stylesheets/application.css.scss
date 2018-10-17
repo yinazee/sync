@@ -84,9 +84,9 @@ nav li a {
   margin-bottom: 20px;
 }
 
-#welcome .home {
-  width: auto;
-  margin: 80px auto;
+#welcome.home {
+  // width: auto;
+  // margin: auto 80px;
   margin-bottom: 40px;
   padding: auto;
   text-align: center;
@@ -94,8 +94,9 @@ nav li a {
 
 .container {
   width: 450px;
-  margin: 50px;
+  // margin: 50px;
   margin-bottom: 40px;
+  margin-top: 60px;
   text-align: left;
 }
 
