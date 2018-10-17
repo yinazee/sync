@@ -5,8 +5,7 @@
 <p><strong>Location:</strong> <%= @event.location %><br></p>
 <p><strong>Date:</strong> <%= @event.date %><br></p>
 <p><strong>Description:</strong> <%= @event.description %><br></p>
-
-
+<strong>Guests:</strong><br>
 <% @event.guests.collect do |guest| %>
 <%= guest.user.name.capitalize %><br>
 <% end %>

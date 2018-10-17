@@ -10,16 +10,16 @@ class SessionsController < ApplicationController
       log_user_in
       redirect_to user_path(@user), flash: {success: "You're logged in through Facebook!"} #user_path(@user)
     else
-      @user = User.find_by(name: params[:user][:name])
-      session[:user_id] = @user.id
-        if @user && @user.authenticate(params[:user][:password])
-          log_user_in
-          redirect_to root_path, flash: {success: "You're logged in!"}  #user_path(@user)
-        else
-          redirect_to '/sessions/new', flash: {danger: "Invalid email/password combination!"}
-        end
-     end
-   end
+      @user = User.find_by(name: params[:user][:name].downcase)
+      if @user.try(:authenticate, params[:user][:password])
+        render :new unless @user
+        log_user_in
+        redirect_to root_path, flash: {success: "You're logged in!"}
+      else
+        redirect_to '/login', flash: {danger: "Invalid email/password combination!"}
+      end
+    end
+  end
 
 
   def destroy
