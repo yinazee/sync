@@ -41,7 +41,7 @@ class EventsController < ApplicationController
     @event = Event.find_by(id: params[:id])
     @host = Host.find(@event.host_id)
     if @host.user.id != @user.id
-      redirect_to user_event_path
+      redirect_to user_path, flash: {danger: "Only the host is able to edit."}
     else
       redirect_to edit_user_event_path(@user, @event)
     end

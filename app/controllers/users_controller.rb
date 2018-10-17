@@ -20,14 +20,10 @@ class UsersController < ApplicationController
       flash.now[:danger] = "Please enter a valid email & valid password"
       render :new #error; show user the form again
     end
-    # return render :new unless @user.save
-    #
-    # session[:user_id] = @user.id
-    # redirect_to user_path(current_user)
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
     redirect_to root_path unless session[:user_id] #redirect to artists pat
   end
 
