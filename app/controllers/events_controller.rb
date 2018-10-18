@@ -8,7 +8,6 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @user = current_user
     @users = User.all
   end
 
@@ -42,16 +41,13 @@ class EventsController < ApplicationController
     @host = Host.find(@event.host_id)
     if @host.user.id != @user.id
       redirect_to user_path, flash: {danger: "Only the host is able to edit."}
-    else
-      redirect_to edit_user_event_path(@user, @event)
     end
-
   end
 
   def update
     @user = current_user
     @event = Event.find_by(id: params[:id])
-# @user.host.id == @event.host.id
+
       if @event.update(event_params)
         respond_to do |f|
           f.html {redirect_to user_event_path(@user, @event), flash: {success: "#{@event.name} was updated!"}}

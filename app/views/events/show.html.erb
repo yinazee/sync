@@ -1,7 +1,6 @@
 
 <h1><%= @event.name %></h1>
-
-<p><strong>Host:</strong> <%if @host.user.id == current_user.id %> You <%else%> <%=@event.host.user.name.capitalize%><%end%></p>
+<p><span class="strong">Host:</span> <%if @host.user.id == current_user.id %> You <%else%> <%=@event.host.user.name.capitalize%><%end%></p>
 <p><strong>Location:</strong> <%= @event.location %><br></p>
 <p><strong>Date:</strong> <%= @event.date %><br></p>
 <p><strong>Description:</strong> <%= @event.description %><br></p>

@@ -1,7 +1,5 @@
 <div class="form">
-
 <%=form_for @event, url: {action: "create"} do |f|%>
-
   <div class="form-group">
     <%= f.label :name, "Event Name" %><br>
     <%= f.text_field :name, class: "form-control" %>
@@ -23,10 +21,10 @@
   </div><br>
 
   <span><strong>Invite Your Guests:</strong></span><br>
-  *You may not uninvite guests once they are invited <br>
+  *You may not uninvite guests once they are invited <br><br>
   <%@users.each do |user|%>
   <!-- host's name will not appear as an option -->
-    <% if guest.id == @host.user.id %>
+    <% if user.id == current_user.id %>
       <% nil %>
     <% else %>
       <input type="checkbox" id="<%=user.id%>" name="event[guest][]" value="<%=user.id%>"><%=user.name.capitalize%></input><br>
@@ -39,7 +37,7 @@
       <%= f.submit class: "btn btn-primary" %>
     </div>
 
-
 <% end %>
+
 
 </div>
