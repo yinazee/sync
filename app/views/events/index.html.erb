@@ -12,7 +12,6 @@
       <td><strong>Delete</strong></td>
     </tr>
 
-
     <tr><!--this will list the details of the column name-->
         <% @events.each do |event| %>
       <td><%= link_to "#{event.name}", user_event_path(@user, event) %></td>

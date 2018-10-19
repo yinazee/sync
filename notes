@@ -1,9 +1,10 @@
+<!--
 <h1>Edit <%= @event.name %></h1>
 
 <div class="form">
 
 <%= form_for([@user, @event], html: { multipart: true }) do |f| %>
-
+<%=form_for @event, url: {action: "create"} do |f|%>
   <div class="form-group">
     <%= f.label :name, "Event Name" %><br>
     <%= f.text_field :name, class: "form-control" %>
@@ -35,9 +36,10 @@
   <div class="actions">
     <%= f.submit class: "btn btn-primary" %>
   </div>
-    <p><%= link_to "Delete Event", user_event_path(@user, @event), method: :delete %></p>
-    <p><%= link_to 'Cancel', user_events_path(@user, @events) %></p>
-
   <% end %>
 
-</div>
+  <p><%= link_to 'Cancel', user_path(@user) %></p>
+
+
+
+</div> -->

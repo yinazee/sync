@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:index, :show, :edit, :update, :destroy]
 
   def index
     @user = current_user
@@ -38,6 +39,7 @@ class EventsController < ApplicationController
   def edit
     @user = current_user
     @event = Event.find_by(id: params[:id])
+    @guests = @event.guests
     @host = Host.find(@event.host_id)
     if @host.user.id != @user.id
       redirect_to user_path, flash: {danger: "Only the host is able to edit."}
@@ -60,10 +62,14 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find_by(id: params[:id])
     @event.delete
-    redirect_to event_path(@event), flash: {success: "'#{@event.name}' was deleted!"}
+    redirect_to user_events_path(@user), flash: {success: "'#{@event.name}' was deleted!"}
   end
 
   private
+
+  def set_event
+    @event = Event.find_by(id: params[:id])
+  end
 
   def event_params
     params.require(:event).permit(

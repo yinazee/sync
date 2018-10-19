@@ -1,4 +1,5 @@
 <div class="form">
+
 <%=form_for @event, url: {action: "create"} do |f|%>
   <div class="form-group">
     <%= f.label :name, "Event Name" %><br>
@@ -18,25 +19,7 @@
   <div class="field">
     <%= f.label :description, "Please enter a description of your event. *Optional*" %><br>
     <%= f.text_field :description, class: "form-control" %>
-  </div><br>
-
-  <span><strong>Invite Your Guests:</strong></span><br>
-  *You may not uninvite guests once they are invited <br><br>
-  <%@users.each do |user|%>
-  <!-- host's name will not appear as an option -->
-    <% if user.id == current_user.id %>
-      <% nil %>
-    <% else %>
-      <input type="checkbox" id="<%=user.id%>" name="event[guest][]" value="<%=user.id%>"><%=user.name.capitalize%></input><br>
-    <% end %>
-  <% end %>
-    <br>
-
-
-    <div class="actions">
-      <%= f.submit class: "btn btn-primary" %>
-    </div>
-
+  </div>
 <% end %>
 
 
