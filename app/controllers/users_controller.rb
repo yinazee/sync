@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy]
 
+  def index
+    redirect_to root_path
+  end
+
   def new
     @user = User.new
   end

@@ -1,7 +1,11 @@
-<h1>Events You Created:</h1>
+<h1>All Events</h1>
+
+<h3><%= link_to "Create New Event", new_user_event_path(@user) %></h3>
+
+
+<p><strong>Events You Created:</strong></p>
 
 <table class="table">
-
   <tbody>
 
     <tr><!--this will name the columns-->
@@ -13,24 +17,36 @@
     </tr>
 
     <tr><!--this will list the details of the column name-->
-        <% @events.each do |event| %>
-      <td><%= link_to "#{event.name}", user_event_path(@user, event) %></td>
-      <td><%= event.location %></td>
-      <td><%= event.date.strftime("%b %d, %Y") %></td>
-      <td><%= link_to "Edit", edit_user_event_path(@user, event) %></td>
-      <td><%= link_to "Delete", user_event_path(@user, event), method: :delete %></td>
-
-
+      <% @events.each do |event| %>
+        <td><%= link_to "#{event.name}", user_event_path(@user, event) %></td>
+        <td><%= event.location %></td>
+        <td><%= event.date.strftime("%b %d, %Y") %></td>
+        <td><%= link_to "Edit", edit_user_event_path(@user, event) %></td>
+        <td><%= link_to "Delete", user_event_path(@user, event), method: :delete %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
 
 
-<p><%= link_to "Create New Event", new_user_event_path(@user) %></p>
+<p><strong>Events You've Been Invited to:</strong></p>
 
-<p>Events You've Been Invited to:</p>
+<table class="table">
+  <tbody>
 
-<% @invites.each do |invite| %>
-<%= link_to "#{invite.name}", user_event_path(@user, invite) %><br>
-<% end %>
+    <tr><!--this will name the columns-->
+      <td><strong>Name</strong></td>
+      <td><strong>Location</strong></td>
+      <td><strong>Date</strong></td>
+    </tr>
+
+    <tr><!--this will list the details of the column name-->
+      <% @invites.each do |invite| %>
+      <td><%= link_to "#{invite.name}", user_event_path(@user, invite) %></td>
+      <td><%= event.location %></td>
+      <td><%= event.date.strftime("%b %d, %Y") %></td>
+      <% end %>
+    </tr>
+
+  </tbody>
+</table>

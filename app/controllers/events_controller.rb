@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   def index
     @user = current_user
     @events = @user.host.events
+    # binding.pry
     @invites = @user.guest.events
   end
 
@@ -61,8 +62,9 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find_by(id: params[:id])
+    @event.event_guests.destroy_all
     @event.delete
-    redirect_to user_events_path(@user), flash: {success: "'#{@event.name}' was deleted!"}
+    redirect_to user_events_path(current_user), flash: {success: "'#{@event.name}' was deleted!"}
   end
 
   private

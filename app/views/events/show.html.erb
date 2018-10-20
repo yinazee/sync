@@ -14,9 +14,12 @@
     <%= guest.user.name.capitalize %><br>
   <% end %>
 <% end %>
+<br>
+<br>
 
 <%if @host.user.id == current_user.id %>
-  <%= link_to "Edit", edit_user_event_path(@user, @event) %><br>
+  <%= link_to "Edit Event", edit_user_event_path(@user, @event) %><br>
+  <%= link_to "Delete Event", user_event_path(@user, @event), method: :delete %>
 <% else %>
   <% nil %>
 <% end %>
