@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       flash[:success] = "You've successfully created an account!"
       redirect_to user_path(@user)
     else
-      flash.now[:danger] = "Please enter a valid email & valid password"
+      flash[:danger] = "Please enter a valid email & valid password"
       render :new #error; show user the form again
     end
   end

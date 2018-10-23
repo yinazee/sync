@@ -4,7 +4,6 @@ class EventsController < ApplicationController
   def index
     @user = current_user
     @events = @user.host.events
-    # binding.pry
     @invites = @user.guest.events
   end
 
@@ -27,8 +26,10 @@ class EventsController < ApplicationController
           @event.save
           @user.host.events << @event
         end
-      end
-      redirect_to user_events_path
+    else
+      render :new, flash: {danger: "Please enter all fields."}
+    end
+      redirect_to user_events_path, flash: {success: "#{@event.name} is created!"}
     end
 
   def show
@@ -51,20 +52,19 @@ class EventsController < ApplicationController
     @user = current_user
     @event = Event.find_by(id: params[:id])
 
-      if @event.update(event_params)
-        respond_to do |f|
-          f.html {redirect_to user_event_path(@user, @event), flash: {success: "#{@event.name} was updated!"}}
-        end
-      else
-        render :edit, flash: {danger: "Please login first!"}
+    if @event.update(event_params)
+      respond_to do |f|
+        f.html {redirect_to user_event_path(@user, @event), flash: {success: "#{@event.name} was updated!"}}
       end
+    else
+      render :edit, flash: {danger: "Please login first!"}
+    end
   end
 
   def destroy
     @event = Event.find_by(id: params[:id])
-    @event.event_guests.destroy_all
     @event.delete
-    redirect_to user_events_path(current_user), flash: {success: "'#{@event.name}' was deleted!"}
+    redirect_to user_events_path, flash: {success: "'#{@event.name}' was deleted!"}
   end
 
   private

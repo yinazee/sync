@@ -1,3 +1,7 @@
+<div class="center-alert">
+   <%= render :partial => 'shared/flash_messages' %>
+</div>
+
 <h1>All Events</h1>
 
 <h3><%= link_to "Create New Event", new_user_event_path(@user) %></h3>
@@ -43,10 +47,10 @@
     <tr><!--this will list the details of the column name-->
       <% @invites.each do |invite| %>
       <td><%= link_to "#{invite.name}", user_event_path(@user, invite) %></td>
-      <td><%= event.location %></td>
-      <td><%= event.date.strftime("%b %d, %Y") %></td>
-      <% end %>
+      <td><%= invite.location %></td>
+      <td><%= invite.date.strftime("%b %d, %Y") %></td>
     </tr>
+      <% end %>
 
   </tbody>
 </table>
