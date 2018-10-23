@@ -1,4 +1,9 @@
 
+<div class="center-alert">
+   <%= render :partial => 'shared/flash_messages' %>
+</div>
+
+
 <h1><%= @event.name %></h1>
 <p><span class="strong">Host:</span> <%if @host.user.id == current_user.id %> You <%else%> <%=@event.host.user.name.capitalize%><%end%></p>
 <p><strong>Location:</strong> <%= @event.location %><br></p>
