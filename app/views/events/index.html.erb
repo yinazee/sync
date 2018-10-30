@@ -15,7 +15,7 @@
     <tr><!--this will name the columns-->
       <td><strong>Name</strong></td>
       <td><strong>Location</strong></td>
-      <td><strong>Date</strong></td>
+      <td><strong>When</strong></td>
       <td><strong>Edit</strong></td>
       <td><strong>Delete</strong></td>
     </tr>
@@ -41,10 +41,11 @@
     <tr><!--this will name the columns-->
       <td><strong>Name</strong></td>
       <td><strong>Location</strong></td>
-      <td><strong>Date</strong></td>
+      <td><strong>When</strong></td>
     </tr>
 
     <tr><!--this will list the details of the column name-->
+
       <% @invites.each do |invite| %>
       <td><%= link_to "#{invite.name}", user_event_path(@user, invite) %></td>
       <td><%= invite.location %></td>

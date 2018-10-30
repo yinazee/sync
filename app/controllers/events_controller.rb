@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 
   def index
     @events = @user.host.events
-    @invites = @user.guest.events
+    @invites = @user.guest.events.sort_by { |obj| obj.created_at }
   end
 
   def new
@@ -30,10 +30,21 @@ class EventsController < ApplicationController
       else
         render :new, flash: {danger: "Please enter all fields."}
       end
-        # redirect_to user_events_path, flash: {success: "#{@event.name} is created!"}
-      end
+    end
 
   def show
+    @guests = @event.event_guests
+    @invites = @user.guest.events
+    @guest = Guest.find(@user.id)
+    @eventguest = EventGuest.find_by(guest_id: current_user.guest.id, event_id: params[:id])
+
+    # if @eventguest.rsvp
+    #   @eventguest.update(eventguest_params)
+    # end
+    # if @eventguest.update(params[:rsvp])
+      # redirect_to user_event_path(@user, @event)
+    # end
+
   end
 
   def edit
@@ -44,12 +55,17 @@ class EventsController < ApplicationController
   end
 
   def update
+    binding.pry
     if @event.update(event_params)
+      redirect_to user_event_path(@user, @event), flash: {success: "#{@event.name} was updated!"}
+    elsif @event.event_guests.update
       redirect_to user_event_path(@user, @event), flash: {success: "#{@event.name} was updated!"}
     else
       render :edit, flash: {danger: "Please login first!"}
     end
   end
+
+
 
   def destroy
     @event.event_guests.destroy_all
@@ -71,7 +87,13 @@ class EventsController < ApplicationController
     @event = Event.find_by(id: params[:id])
   end
 
+  def eventguest_params
+    @eventguest = EventGuest.find_by(guest_id: current_user.guest.id, event_id: params[:id])
+    @rsvp = @eventguest.rsvp
+  end
+
   def event_params
+    # binding.pry
     params.require(:event).permit(
         :name,
         :location,

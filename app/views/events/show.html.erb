@@ -10,19 +10,36 @@
 <p><strong>Date:</strong> <%= @event.date %><br></p>
 <p><strong>Description:</strong> <%= @event.description %><br></p>
 
-<strong>Guests:</strong><br>
-<% @event.guests.collect do |guest| %>
+<strong>Guests:</strong><br> *Green indicates attendance <br>
+<% @guests.collect do |eventguest| %>
   <!--the host name will not appear as a suggestion in the guest list -->
-  <% if guest.id == @host.user.id %>
+  <% if eventguest.guest.user.id == @host.user.id %>
     <% nil %>
   <% else %>
-    <%= guest.user.name.capitalize %><br>
+      <% if eventguest.rsvp == true %>
+        <font color="green"><%= eventguest.guest.user.name.capitalize %></font><br>
+        <br>
+      <% else %>
+        <font color="red"><%= eventguest.guest.user.name.capitalize %></font><br>
+      <% end %>
   <% end %>
 <% end %>
-<br>
-<br>
 
-<%if @host.user.id == current_user.id %>
+<% @guests.each do |guest| %>
+  <% if guest.guest_id == current_user.guest.id && guest.not_going? %>
+      <div class="form-group">
+        <p><strong>Will you be attending?</strong>
+        <%= form_for @eventguest, url: {action: "update"} do |f| %>
+          <%= f.check_box :rsvp %>
+          <%= f.label :rsvp, "Yes" %>
+          <%= f.submit "Submit", class: "btn btn-primary" %>
+        </div>
+        <% end %>
+  <% end %>
+<% end %>
+
+
+<% if @host.user.id == current_user.id %>
   <%= link_to "Edit Event", edit_user_event_path(@user, @event) %><br>
   <%= link_to "Delete Event", user_event_path(@user, @event), method: :delete %>
 <% else %>
