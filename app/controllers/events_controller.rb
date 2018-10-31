@@ -55,7 +55,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    binding.pry
+    # binding.pry
     if @event.update(event_params)
       redirect_to user_event_path(@user, @event), flash: {success: "#{@event.name} was updated!"}
     elsif @event.event_guests.update

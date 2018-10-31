@@ -1,4 +1,3 @@
-
 <div class="center-alert">
    <%= render :partial => 'shared/flash_messages' %>
 </div>
@@ -29,7 +28,7 @@
   <% if guest.guest_id == current_user.guest.id && guest.not_going? %>
       <div class="form-group">
         <p><strong>Will you be attending?</strong>
-        <%= form_for @eventguest, url: event_guest_path do |f| %>
+        <%= form_for @eventguest do |f| %>
           <%= f.check_box :rsvp %>
           <%= f.label :rsvp, "Yes" %>
           <%= f.submit "Submit", class: "btn btn-primary" %>
