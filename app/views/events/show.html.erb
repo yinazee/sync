@@ -3,24 +3,23 @@
    <%= render :partial => 'shared/flash_messages' %>
 </div>
 
-
 <h1><%= @event.name %></h1>
 <p><span class="strong">Host:</span> <%if @host.user.id == current_user.id %> You <%else%> <%=@event.host.user.name.capitalize%><%end%></p>
 <p><strong>Location:</strong> <%= @event.location %><br></p>
 <p><strong>Date:</strong> <%= @event.date %><br></p>
 <p><strong>Description:</strong> <%= @event.description %><br></p>
 
-<strong>Guests:</strong><br> *Green indicates attendance <br>
+<strong>Guests:</strong><br>
+*Green indicates attendance<br>
 <% @guests.collect do |eventguest| %>
   <!--the host name will not appear as a suggestion in the guest list -->
   <% if eventguest.guest.user.id == @host.user.id %>
     <% nil %>
   <% else %>
       <% if eventguest.rsvp == true %>
-        <font color="green"><%= eventguest.guest.user.name.capitalize %></font><br>
-        <br>
+        <p><font color="green"><%= eventguest.guest.user.name.capitalize %></font></p>
       <% else %>
-        <font color="red"><%= eventguest.guest.user.name.capitalize %></font><br>
+        <p><%= eventguest.guest.user.name.capitalize %><p>
       <% end %>
   <% end %>
 <% end %>
@@ -38,10 +37,10 @@
   <% end %>
 <% end %>
 
-
-<% if @host.user.id == current_user.id %>
-  <%= link_to "Edit Event", edit_user_event_path(@user, @event) %><br>
-  <%= link_to "Delete Event", user_event_path(@user, @event), method: :delete %>
-<% else %>
-  <% nil %>
-<% end %>
+<!-- only the host gets to edit or delete event -->
+  <% if @host.user.id == current_user.id %>
+    <%= link_to "Edit Event", edit_user_event_path(@user, @event) %><br>
+    <%= link_to "Delete Event", user_event_path(@user, @event), method: :delete %>
+  <% else %>
+    <% nil %>
+  <% end %>
