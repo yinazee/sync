@@ -13,34 +13,16 @@
 *Green indicates attendance<br>
 <% @guests.collect do |eventguest| %>
   <!--the host name will not appear as a suggestion in the guest list -->
-  <% if eventguest.guest.user.id == @host.user.id %>
-    <% nil %>
-  <% else %>
-      <% if eventguest.rsvp == true %>
-        <p><font color="green"><%= eventguest.guest.user.name.capitalize %></font></p>
-      <% else %>
-        <p><%= eventguest.guest.user.name.capitalize %><p>
-      <% end %>
-  <% end %>
+  <% if eventguest.rsvp == true %>
+      <p><font color="green"><%= eventguest.guest.user.name.capitalize %></font></p>
+    <% else %>
+      <p><%= eventguest.guest.user.name.capitalize %><p>
+    <% end %>
 <% end %>
+<br>
 
-<% @guests.each do |guest| %>
-  <% if guest.guest_id == current_user.guest.id && guest.not_going? %>
-      <div class="form-group">
-        <p><strong>Will you be attending?</strong>
-        <%= form_for @eventguest, url: event_guest_path do |f| %>
-          <%= f.check_box :rsvp %>
-          <%= f.label :rsvp, "Yes" %>
-          <%= f.submit "Submit", class: "btn btn-primary" %>
-        </div>
-        <% end %>
-  <% end %>
-<% end %>
+<!-- only asks attendance once -->
+<%= render 'attendance' %>
 
 <!-- only the host gets to edit or delete event -->
-  <% if @host.user.id == current_user.id %>
-    <%= link_to "Edit Event", edit_user_event_path(@user, @event) %><br>
-    <%= link_to "Delete Event", user_event_path(@user, @event), method: :delete %>
-  <% else %>
-    <% nil %>
-  <% end %>
+<%= render 'hostaccess' %>

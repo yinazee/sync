@@ -1,4 +1,4 @@
-class Guest < ActiveRecord::Base
+class Guest < ApplicationRecord
   belongs_to :user
 
   has_many :event_guests

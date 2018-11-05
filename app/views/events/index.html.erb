@@ -22,15 +22,48 @@
 
     <tr><!--this will list the details of the column name-->
       <% @events.each do |event| %>
-        <td><%= link_to "#{event.name}", user_event_path(@user, event) %></td>
-        <td><%= event.location %></td>
-        <td><%= event.date.strftime("%b %d, %Y") %></td>
-        <td><%= link_to "Edit", edit_user_event_path(@user, event) %></td>
-        <td><%= link_to "Delete", user_event_path(@user, event), method: :delete %></td>
+        <% if event.event_guests.any? {|guest| !guest.rsvp }%>
+          <td><%= link_to "#{event.name}", user_event_path(@user, event) %></td>
+          <td><%= event.location %></td>
+          <td><%= event.date.strftime("%b %d, %Y") %></td>
+          <td><%= link_to "Edit", edit_user_event_path(@user, event) %></td>
+          <td><%= link_to "Delete", user_event_path(@user, event), method: :delete %></td>
     </tr>
-    <% end %>
+        <% end %>
+      <% end %>
   </tbody>
-</table>
+</table><br>
+
+<!-------------------------------------------------------------------->
+
+<p><strong>Your Events With All Guests Attending:</strong></p>
+
+<table class="table">
+  <tbody>
+
+    <tr><!--this will name the columns-->
+      <td><strong>Name</strong></td>
+      <td><strong>Location</strong></td>
+      <td><strong>When</strong></td>
+      <td><strong>Edit</strong></td>
+      <td><strong>Delete</strong></td>
+    </tr>
+
+    <tr><!--this will list the details of the column name-->
+      <% @events.each do |event| %>
+        <% if event.event_guests.all? {|guest| guest.rsvp} %>
+          <td><%= link_to "#{event.name}", user_event_path(@user, event) %></td>
+          <td><%= event.location %></td>
+          <td><%= event.date.strftime("%b %d, %Y") %></td>
+          <td><%= link_to "Edit", edit_user_event_path(@user, event) %></td>
+          <td><%= link_to "Delete", user_event_path(@user, event), method: :delete %></td>
+    </tr>
+        <% end %>
+      <% end %>
+  </tbody>
+</table><br>
+
+<!-------------------------------------------------------------------->
 
 
 <p><strong>Events You've Been Invited to:</strong></p>
@@ -45,12 +78,11 @@
     </tr>
 
     <tr><!--this will list the details of the column name-->
-
       <% @invites.each do |invite| %>
-      <td><%= link_to "#{invite.name}", user_event_path(@user, invite) %></td>
-      <td><%= invite.location %></td>
-      <td><%= invite.date.strftime("%b %d, %Y") %></td>
-    </tr>
+          <td><%= link_to "#{invite.name}", user_event_path(@user, invite) %></td>
+          <td><%= invite.location %></td>
+          <td><%= invite.date.strftime("%b %d, %Y") %></td>
+      </tr>
       <% end %>
 
   </tbody>

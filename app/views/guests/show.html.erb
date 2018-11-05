@@ -25,7 +25,7 @@
 <% end %>
 
 <% @guests.each do |guest| %>
-  <% if guest.guest_id == current_user.guest.id && guest.not_going? %>
+  <% if guest.guest_id == current_user.guest.id && !guest.going %>
       <div class="form-group">
         <p><strong>Will you be attending?</strong>
         <%= form_for @eventguest do |f| %>

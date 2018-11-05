@@ -1,0 +1,6 @@
+<% if @truehost %><!-- only the host gets to edit or delete event -->
+  <%= link_to "Edit Event", edit_user_event_path(@user, @event) %><br>
+  <%= link_to "Delete Event", user_event_path(@user, @event), method: :delete %>
+<% else %>
+  <% nil %>
+<% end %>

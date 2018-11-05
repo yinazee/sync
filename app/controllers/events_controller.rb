@@ -5,6 +5,7 @@ class EventsController < ApplicationController
 
   def index
     @events = @user.host.events
+    # @invites = @user.guest.events.order()
     @invites = @user.guest.events.sort_by { |obj| obj.created_at }
   end
 
@@ -35,15 +36,8 @@ class EventsController < ApplicationController
   def show
     @guests = @event.event_guests
     @invites = @user.guest.events
-    @guest = Guest.find(@user.id)
     @eventguest = EventGuest.find_by(guest_id: current_user.guest.id, event_id: params[:id])
-
-    # if @eventguest.rsvp
-    #   @eventguest.update(eventguest_params)
-    # end
-    # if @eventguest.update(params[:rsvp])
-      # redirect_to user_event_path(@user, @event)
-    # end
+    @truehost = @host.user.id == current_user.id
 
   end
 

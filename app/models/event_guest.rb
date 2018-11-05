@@ -1,12 +1,8 @@
-class EventGuest < ActiveRecord::Base
+class EventGuest < ApplicationRecord
   belongs_to :event
   belongs_to :guest
 
-  def going?
-    self.rsvp == true
-  end
+  scope :rsvp, -> { where(rsvp: true) }
 
-  def not_going?
-    self.rsvp == false
-  end
+
 end
