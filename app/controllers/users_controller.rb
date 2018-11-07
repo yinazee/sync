@@ -32,10 +32,14 @@ class UsersController < ApplicationController
     redirect_to root_path unless session[:user_id] #redirect to artists pat
   end
 
-  def destroy
-    @user.destroy
-    redirect_to root_path, flash: {success: "Your account has been deleted!"}
-  end
+# user will not be able to delete their profile 
+  # def destroy
+  #   if current_user.id == @user.id
+  #     @event_guests = EventGuest.find_by(guest_id: current_user.guest.id)
+  #     @user.destroy
+  #   end
+  #   redirect_to root_path, flash: {success: "Your account has been deleted!"}
+  # end
 
 
 private

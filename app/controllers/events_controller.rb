@@ -38,7 +38,8 @@ class EventsController < ApplicationController
     @invites = @user.guest.events
     @eventguest = EventGuest.find_by(guest_id: current_user.guest.id, event_id: params[:id])
     @truehost = @host.user.id == current_user.id
-
+    # binding.pry
+    # @user = User.find(params[:eventguest][:guest][:user])
   end
 
   def edit
