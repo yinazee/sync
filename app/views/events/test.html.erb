@@ -1,0 +1,22 @@
+<table class="table">
+  <tbody>
+
+
+
+    <tr><!--this will name the columns-->
+      <td><strong>Event Date</strong></td>
+      <td><strong>Event Name</strong></td>
+    </tr>
+
+
+    <tr>
+      <% @events.date_order.each do |event| %>
+      <td><%= event.date %></td>
+      <td><%= event.name %></td>
+    </tr>
+
+    <% end %>
+
+  </tbody>
+
+</table>

@@ -8,14 +8,11 @@ class Event < ApplicationRecord
   validates :location, presence: true
   validates :guests, presence: true
 
+  scope :date_order, -> { order(date: :desc) }
 
-  # 
-  # def completed?
-  #   if self.event_guests.rsvp == true
-  #     true
-  #   else
-  #     false
-  #   end
+
+  # def event_order
+  #   current_user.host.events.order('date DESC, date')
   # end
 
 end

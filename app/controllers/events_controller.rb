@@ -1,13 +1,20 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:index, :show, :edit, :update, :destroy]
   before_action :set_user, only: [:index, :create, :show, :edit, :update, :destroy]
+  # skip_before_action :set_host, only: [:test]
   before_action :set_host, only: [:show, :edit]
+
+  def test
+    @events = Event.all
+  end
 
   def index
     @events = @user.host.events
     # @invites = @user.guest.events.order()
     @invites = @user.guest.events.sort_by { |obj| obj.created_at }
   end
+
+
 
   def new
     @event = Event.new
@@ -38,8 +45,6 @@ class EventsController < ApplicationController
     @invites = @user.guest.events
     @eventguest = EventGuest.find_by(guest_id: current_user.guest.id, event_id: params[:id])
     @truehost = @host.user.id == current_user.id
-    # binding.pry
-    # @user = User.find(params[:eventguest][:guest][:user])
   end
 
   def edit
@@ -60,18 +65,18 @@ class EventsController < ApplicationController
     end
   end
 
-
-
   def destroy
     @event.event_guests.destroy_all
     @event.delete
     redirect_to user_events_path, flash: {success: "'#{@event.name}' was deleted!"}
   end
 
+
   private
 
   def set_host
-    @host = Host.find(@event.host_id)
+    # binding.pry
+    @host = Host.find(current_user.host.id)
   end
 
   def set_user

@@ -13,7 +13,7 @@
 *Green indicates attendance<br>
 <% @guests.collect do |eventguest| %>
   <!--the host name will not appear as a suggestion in the guest list -->
-  <% if eventguest.rsvp && @eventguest %>
+  <% if eventguest.rsvp %>
       <p><font color="green"><%= eventguest.guest.user.name.capitalize %></font></p>
     <% else %>
       <p><%= eventguest.guest.user.name.capitalize %><p>
