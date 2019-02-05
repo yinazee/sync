@@ -29,7 +29,7 @@ After installing the gem, run `sync` to begin.
 Ideally, it would be an application where all of your guests get to pick from a range of available dates and the host will confirm among the most selected available date.
 
 ## Contributing
-Bug reports and pull requests are welcome on GitHub at https://github.com/christinetran825/Artphilia. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/yinazee/sync. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
