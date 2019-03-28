@@ -23,6 +23,7 @@ Once you have Ruby 2.3.3 and Rails 5.1.4 installed,
 
 ## Usage
 After installing the gem, run `sync` to begin.
+You have to create at least 2 users before you create an Event. (Because inorder to successfully create an Event, you need to invite.)
 
 ## Future Revisions
 
